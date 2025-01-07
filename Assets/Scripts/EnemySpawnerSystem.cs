@@ -16,7 +16,6 @@ partial struct EnemySpawnerSystem : ISystem
     private Unity.Mathematics.Random random;
 
 
-    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         entityManager = state.EntityManager;
@@ -62,11 +61,11 @@ partial struct EnemySpawnerSystem : ISystem
                 float3 direction = math.normalize(playerTrans.Position - enemyTrans.Position);
                 float angle = math.atan2(direction.y, direction.x);
                 angle -= math.radians(90f);
-                quaternion lookRot = quaternion.AxisAngle(new float3(0,0,1), angle);
+                quaternion lookRot = quaternion.AxisAngle(new float3(0, 0, 1), angle);
                 enemyTrans.Rotation = lookRot;
 
                 ECB.SetComponent(enemyEntity, enemyTrans);
-                ECB.AddComponent(enemyEntity, new EnemyComponent 
+                ECB.AddComponent(enemyEntity, new EnemyComponent
                 {
                     CurrentHealth = 100f,
                     EnemySpeed = 1.25f,

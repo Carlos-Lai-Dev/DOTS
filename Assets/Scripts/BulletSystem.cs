@@ -63,6 +63,7 @@ partial struct BulletSystem : ISystem
                 physicsWorld.CapsuleCastAll(point1, point2, bulletComponent.Size / 2, float3.zero, 1f, ref hits, new CollisionFilter
                 {
                     BelongsTo = (uint)CollisionLayer.Default,
+                    //CollidesWith = (uint)CollisionLayer.Wall | (uint)CollisionLayer.Enemy,
                     CollidesWith = layerMask,
                 });
 
